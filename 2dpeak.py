@@ -23,7 +23,7 @@ def findAPeak(data):
     return result
 
 
-def findAPeakBetter(data, nextIndex=None):
+def findAPeakBetter(data, nextIndex=None, depth = 1):
     rightIsBigger = False
     leftIsBigger = False
     n = len(data)
@@ -36,6 +36,8 @@ def findAPeakBetter(data, nextIndex=None):
             i = n / 2
     else:
         i = nextIndex
+
+    print "{0} = {1}".format(i, data[i])
 
     # if first element and it's >= to the second, we've found a peak
     if i == 0 and data[i] >= data[i + 1]:
@@ -55,19 +57,23 @@ def findAPeakBetter(data, nextIndex=None):
 
     # if we found the left side is bigger, go that way by picking the mid point of that half
     if leftIsBigger:
-        nextIndex = i / 2
-        return findAPeakBetter(data, nextIndex)
+        depth += 1
+        nextIndex = i - (n / depth**2)
+        return findAPeakBetter(data, nextIndex, depth)
 
     # if we found the right side is bigger, go that way!
     elif rightIsBigger:
-        nextIndex = i + int((n - i) / 2)
-        return findAPeakBetter(data, nextIndex)
+        depth += 1
+        nextIndex = i + (n / depth**2)
+        return findAPeakBetter(data, nextIndex, depth)
 
     # if neither side was bigger, then we found a peak
     else:
         return i
 
+findAPeakBetter([20,20,30,70,20,15,20,10,5,10])
 
+'''
 # testing the two 2D peak finding algorithms
 import timeit
 
@@ -92,7 +98,7 @@ while len(data) < 100000000:
 
     dataLength = dataLength * 10
 
-'''
+
 1.00135803223e-05 (findAPeak 10)
 1.69277191162e-05 (findAPeakBetter 10)
 
