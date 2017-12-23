@@ -1,67 +1,67 @@
 
-def findAPeak(n):
+def findAPeak(data):
 
     result = -1
 
-    for i in range(len(n)):
+    for i in range(len(data)):
 
         # if first element and it's >= to the second, we've found a peak!
-        if i == 0 and n[i] >= n[i + 1]:
+        if i == 0 and data[i] >= data[i + 1]:
             result = i
             break
 
         # if it's the last element and it's >= than the previous, it's a peak
-        elif i == len(n) - 1 and n[i] >= n[i - 1]:
+        elif i == len(data) - 1 and data[i] >= data[i - 1]:
             result = i
             break
 
         # if it's any other element, and it's bigger than those either side, then it's a peak
-        elif n[i] >= n[i - 1] and n[i] >= n[i + 1]:
+        elif data[i] >= data[i - 1] and data[i] >= data[i + 1]:
             result = i
             break
 
     return result
 
 
-def findAPeakBetter(n, nextIndex=None):
+def findAPeakBetter(data, nextIndex=None):
     rightIsBigger = False
     leftIsBigger = False
-    lengthOfn = len(n)
+    n = len(data)
 
     # figure out the mid point, if we weren't given the next index to try
     if nextIndex == None:
-        if lengthOfn == 1:
+        if n == 1:
             return 0
         else:
-            i = lengthOfn / 2
+            i = n / 2
     else:
         i = nextIndex
 
     # if first element and it's >= to the second, we've found a peak
-    if i == 0 and n[i] >= n[i + 1]:
+    if i == 0 and data[i] >= data[i + 1]:
         return i
 
     # if it's the last element and it's >= than the previous, it's a peak
-    elif i == len(n) - 1 and n[i] >= n[i - 1]:
+    elif i == len(data) - 1 and data[i] >= data[i - 1]:
         return i
 
     # find out if the element to the right is bigger then n[i]
-    elif n[i] <= n[i + 1]:
+    elif data[i] <= data[i + 1]:
         rightIsBigger = True
 
     # find out if the element to the left is bigger than n[i] (if the one to right isn't)
-    elif n[i] <= n[i - 1]:
+    elif data[i] <= data[i - 1]:
         leftIsBigger = True
 
     # if we found the left side is bigger, go that way by picking the mid point of that half
     if leftIsBigger:
         nextIndex = i / 2
-        return findAPeakBetter(n, nextIndex)
+        return findAPeakBetter(data, nextIndex)
 
     # if we found the right side is bigger, go that way!
     elif rightIsBigger:
-        nextIndex = i + int((lengthOfn - i) / 2)
-        return findAPeakBetter(n, nextIndex)
+        nextIndex = i + int((n - i) / 2)
+        return findAPeakBetter(data, nextIndex)
 
     # if neither side was bigger, then we found a peak
     else:
