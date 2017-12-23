@@ -68,6 +68,7 @@ def findAPeakBetter(n, nextIndex=None):
         return i
 
 
+# testing the two 2D peak finding algorithms
 import timeit
 
 def wrapper(func, *args, **kwargs):
