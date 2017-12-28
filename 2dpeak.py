@@ -37,7 +37,8 @@ def findAPeakBetter(data, nextIndex=None, depth = 1):
     else:
         i = nextIndex
 
-    #print i
+    print i
+    #print depth
 
     # if first element and it's >= to the second, we've found a peak
     if i == 0 and data[i] >= data[i + 1]:
@@ -77,6 +78,9 @@ def findAPeakBetter(data, nextIndex=None, depth = 1):
         return i
 
 
+findAPeakBetter([1, 2, 3, 4, 5, 4, 5, 4, 3, 2])
+
+'''
 # testing the two 2D peak finding algorithms
 import timeit
 
@@ -101,28 +105,28 @@ while len(data) < 100000000:
 
     dataLength = dataLength * 10
 
-'''
-1.00135803223e-05 (findAPeak 10)
-1.69277191162e-05 (findAPeakBetter 10)
 
-2.88486480713e-05 (findAPeak 100)
-1.19209289551e-05 (findAPeakBetter 100)
+8.82148742676e-06 (findAPeak 10)
+4.98294830322e-05 (findAPeakBetter 10)
 
-0.000272035598755 (findAPeak 1000)
-1.50203704834e-05 (findAPeakBetter 1000)
+2.78949737549e-05 (findAPeak 100)
+1.00135803223e-05 (findAPeakBetter 100)
 
-0.00370693206787 (findAPeak 10000)
+0.000277996063232 (findAPeak 1000)
+1.69277191162e-05 (findAPeakBetter 1000)
+
+0.00325894355774 (findAPeak 10000)
 2.28881835938e-05 (findAPeakBetter 10000)
 
-0.0607008934021 (findAPeak 100000)
-2.78949737549e-05 (findAPeakBetter 100000)
+0.0410571098328 (findAPeak 100000)
+3.00407409668e-05 (findAPeakBetter 100000)
 
-0.420443058014 (findAPeak 1000000)
-4.6968460083e-05 (findAPeakBetter 1000000)
+0.294404983521 (findAPeak 1000000)
+5.48362731934e-05 (findAPeakBetter 1000000)
 
-3.28927111626 (findAPeak 10000000)
-3.91006469727e-05 (findAPeakBetter 10000000)
+2.89510893822 (findAPeak 10000000)
+4.2200088501e-05 (findAPeakBetter 10000000)
 
-36.6545820236 (findAPeak 100000000)
-7.10487365723e-05 (findAPeakBetter 100000000)
+29.64407897 (findAPeak 100000000)
+5.79357147217e-05 (findAPeakBetter 100000000)
 '''
